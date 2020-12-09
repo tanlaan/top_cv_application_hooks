@@ -8,23 +8,29 @@ function General() {
 
     if (edit) {
         return (
-        <GeneralEdit 
-            setEdit={setEdit}
-            name={name}
-            setName={setName}
-            email={email}
-            setEmail={setEmail}
-            telephone={telephone}
-            setTelephone={setTelephone}
-        />)
+        <div id="general-info">
+            <GeneralEdit 
+                setEdit={setEdit}
+                name={name}
+                setName={setName}
+                email={email}
+                setEmail={setEmail}
+                telephone={telephone}
+                setTelephone={setTelephone}
+            />
+        </div>
+)
     }
     return (
-    <GeneralDisplay 
-        setEdit={setEdit}
-        name={name}
-        email={email}
-        telephone={telephone}
-    />)
+        <div id='general-info'>
+            <GeneralDisplay 
+                setEdit={setEdit}
+                name={name}
+                email={email}
+                telephone={telephone}
+            />
+        </div>
+    )
 }
 
 function GeneralEdit(props) {
@@ -37,7 +43,7 @@ function GeneralEdit(props) {
             </label>
             <label>
                 Email:
-                <input type='email' value={email} onChange={(e) => setEmail(e.target.value)}/>
+                <input type='email' value={email} onChange={(e) => setEmail(e.target.value)} />
             </label>
             <label>
                 Phone:
@@ -52,11 +58,12 @@ function GeneralEdit(props) {
 function GeneralDisplay(props) {
     const {setEdit, name, email, telephone} = props
     return(
-        <div>
+        <>
             <h2>{name}</h2>
             <p>Email: {email} -- Phone: {telephone}</p>
             <button onClick={(e) => setEdit(true)}>Edit</button>
-        </div>
+
+        </>
     )
 }
 
