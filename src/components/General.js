@@ -1,69 +1,34 @@
 import React, {useState} from 'react'
+import GeneralDisplay from './GeneralDisplay'
+import GeneralEdit from './GeneralEdit'
 
 function General() {
-    const [edit, setEdit] = useState(true)
+    const [isEdit, setEdit] = useState(true)
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
     const [telephone, setTelephone] = useState('')
 
-    if (edit) {
-        return (
+    return (
         <div id="general-info">
-            <GeneralEdit 
-                setEdit={setEdit}
-                name={name}
-                setName={setName}
-                email={email}
-                setEmail={setEmail}
-                telephone={telephone}
-                setTelephone={setTelephone}
-            />
+            {
+                isEdit 
+                ? <GeneralEdit 
+                    setEdit={setEdit}
+                    name={name}
+                    setName={setName}
+                    email={email}
+                    setEmail={setEmail}
+                    telephone={telephone}
+                    setTelephone={setTelephone}
+                />
+                : <GeneralDisplay 
+                    setEdit={setEdit}
+                    name={name}
+                    email={email}
+                    telephone={telephone}
+                />
+            }
         </div>
-)
-    }
-    return (
-        <div id='general-info'>
-            <GeneralDisplay 
-                setEdit={setEdit}
-                name={name}
-                email={email}
-                telephone={telephone}
-            />
-        </div>
-    )
-}
-
-function GeneralEdit(props) {
-    const {setEdit, name, setName, email, setEmail, telephone, setTelephone} = props
-    return (
-        <form>
-            <label>
-                Name:
-                <input type='text' value={name} onChange={(e) => setName(e.target.value)} />
-            </label>
-            <label>
-                Email:
-                <input type='email' value={email} onChange={(e) => setEmail(e.target.value)} />
-            </label>
-            <label>
-                Phone:
-                <input type='tel' value={telephone} onChange={(e) => setTelephone(e.target.value)} />
-            </label>
-            <button onClick={(e) => setEdit(false)}>Submit</button>
-        </form>
-    )
-
-}
-
-function GeneralDisplay(props) {
-    const {setEdit, name, email, telephone} = props
-    return(
-        <>
-            <h2>{name}</h2>
-            <p>Email: {email} -- Phone: {telephone}</p>
-            <button onClick={(e) => setEdit(true)}>Edit</button>
-
-        </>
     )
 }
 
